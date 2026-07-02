@@ -199,7 +199,7 @@ rgh search-hotels \
 | 具体街道地址 | 详细地址 |
 
 **搜索结果展示模板**（每家酒店一个卡片）：
-*(CRITICAL: You MUST render the `imageUrl` using standard Markdown image syntax `![alt](url)`. Do NOT use HTML `<img>` tags and Do NOT output raw URL strings, as the host platform only supports standard Markdown images.)*
+*(【极其重要】：你必须使用标准的 Markdown 图片语法 `![alt](url)` 来渲染 imageUrl。绝对禁止使用 HTML `<img>` 标签，绝对禁止直接输出纯文本 URL，否则会导致宿主平台无法渲染图片！)*
 
 ```markdown
 🏨 {酒店名称}
