@@ -72,7 +72,7 @@ RollingGo酒店预订Skill就能帮你全程搞定：
 ```
 想省事、纯可视化操作，选择这种安装方式。
 ### 方式二：通过 npx skills 安装 (推荐)
-自动兼容 Cursor, Claude Code, Windsurf 等 40+ 种代理，开发运维、需要精准控制模块、多工具切换，选npx 命令安装。
+自动兼容 Cursor, Claude Code, Windsurf 等 40+ 种代理，开发运维、需精准控制模块、多工具切换用此类安装方式。
 
 ```bash
 # 交互式安装 (推荐，可从菜单中自由勾选不同能力模块)
