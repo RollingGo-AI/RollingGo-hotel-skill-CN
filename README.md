@@ -1,4 +1,4 @@
-# RollingGo Hotel Skill
+# RollingGo Hotel Skill全球酒店搜索预订Skill-2.0新版本
 
 [English](#english) | [简体中文](#简体中文)
 
