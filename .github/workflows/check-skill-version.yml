@@ -1,0 +1,42 @@
+name: Check Skill Version Bump
+
+on:
+  pull_request:
+    paths:
+      - 'skills/**'
+
+jobs:
+  check-version-bump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check if version is bumped in SKILL.md
+        run: |
+          # Find all changed skills directories
+          CHANGED_SKILLS=$(git diff --name-only origin/${{ github.base_ref }} HEAD | grep '^skills/' | cut -d '/' -f 2 | sort -u || true)
+          
+          FAILED=0
+          for SKILL in $CHANGED_SKILLS; do
+            echo "Checking skill: $SKILL"
+            # Check if SKILL.md exists in both old and new (to avoid errors on new/deleted skills)
+            if git show origin/${{ github.base_ref }}:skills/$SKILL/SKILL.md > /dev/null 2>&1 && [ -f "skills/$SKILL/SKILL.md" ]; then
+              OLD_VERSION=$(git show origin/${{ github.base_ref }}:skills/$SKILL/SKILL.md | grep -E '^version:\s*' | sed -E 's/^version:\s*"?([^"]+)"?.*$/\1/' || echo "none")
+              NEW_VERSION=$(grep -E '^version:\s*' skills/$SKILL/SKILL.md | sed -E 's/^version:\s*"?([^"]+)"?.*$/\1/' || echo "none")
+              
+              if [ "$OLD_VERSION" == "$NEW_VERSION" ]; then
+                echo "::error::Skill '$SKILL' has modified files but 'version:' in SKILL.md was not bumped (still $OLD_VERSION)!"
+                FAILED=1
+              else
+                echo "Skill '$SKILL' version bumped from $OLD_VERSION to $NEW_VERSION."
+              fi
+            else
+              echo "Skill '$SKILL' is either new or deleted, skipping version bump check."
+            fi
+          done
+          
+          if [ $FAILED -ne 0 ]; then
+            exit 1
+          fi
