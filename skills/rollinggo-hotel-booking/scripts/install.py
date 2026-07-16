@@ -119,7 +119,7 @@ def main():
         return 1
         
     # Get local bin directory (self-contained inside skill)
-    # Target path: skills/hotel-price-monitor/bin/
+    # Target path: skills/rollinggo-hotel-booking/bin/
     script_dir = os.path.dirname(os.path.abspath(__file__))
     skill_dir = os.path.dirname(script_dir)
     bin_dir = os.path.join(skill_dir, "bin")

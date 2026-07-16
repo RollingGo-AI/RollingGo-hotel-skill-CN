@@ -74,7 +74,7 @@ RollingGo酒店预订Skill就能帮你全程搞定：
 npx skills add https://github.com/RollingGo-AI/rollinggo-hotel-skill-CN
 
 # 或直接定向安装特定核心模块 (跳过交互选单)
-npx skills add https://github.com/RollingGo-AI/rollinggo-hotel-skill-CN --skill hotel-core
+npx skills add https://github.com/RollingGo-AI/rollinggo-hotel-skill-CN --skill rollinggo-hotel-booking
 ```
 
 CLI 会自动检测您系统上安装的 Agent。您也可以通过 `--agent` 强制指定目标环境：
@@ -516,7 +516,7 @@ RollingGo-Skills/
   │    └── copilot-instructions.md
   └── skills/
        ├── llms.txt           # AI Index for search engines / 大模型全局搜索索引
-       └── hotel-core/        # Core hotel booking skill / 核心酒店预订功能包
+       └── rollinggo-hotel-booking/        # Core hotel booking skill / 核心酒店预订功能包
             ├── SKILL.md
             └── references/
                  └── cli-params.md
@@ -541,8 +541,8 @@ Works with Cursor, Claude Code, Codex, Windsurf, Copilot, Google Antigravity, an
 # Install interactively (Select skills from menu)
 npx skills add https://github.com/RollingGo-AI/rollinggo-hotel-skill-CN
 
-# Or install a specific skill directly (e.g., hotel-core)
-npx skills add https://github.com/RollingGo-AI/rollinggo-hotel-skill-CN --skill hotel-core
+# Or install a specific skill directly (e.g., rollinggo-hotel-booking)
+npx skills add https://github.com/RollingGo-AI/rollinggo-hotel-skill-CN --skill rollinggo-hotel-booking
 ```
 
 The CLI auto-detects the installed agent. To target one explicitly, pass `--agent`:
@@ -553,7 +553,7 @@ npx skills add https://github.com/RollingGo-AI/rollinggo-hotel-skill-CN --agent 
 
 ### Clone / copy
 
-Clone this repo and copy the `skills/hotel-core/` folder into the appropriate directory for your agent:
+Clone this repo and copy the `skills/rollinggo-hotel-booking/` folder into the appropriate directory for your agent:
 
 | Agent | Skill Directory |
 |-------|-----------------|

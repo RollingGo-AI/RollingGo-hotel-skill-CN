@@ -1,12 +1,13 @@
 ---
-name: hotel-core
-version: "1.0.0"
-description: RollingGo 酒店搜索与预订助手，通过调用 RollingGo 酒店服务接口实现酒店查询全流程。支持场景：① 按城市/景点/地铁站/机场等地点搜索酒店 ② 按星级、预算、标签（泳池/含早/亲子/宠物友好等）筛选 ③ 查询指定酒店的实时房型与价格 ④ 对比多家酒店 ⑤ 引导用户完成预订。触发词：找酒店、订酒店、搜酒店、酒店推荐、酒店查询、附近酒店、五星酒店、民宿、度假村、查房价、看房型、入住、住哪、住宿、rollinggo、旅游住宿、出差住宿、亲子酒店、带泳池的酒店、含早餐酒店。
+name: rollinggo-hotel-booking
+version: "1.1.0"
+repository: "https://github.com/RollingGo-AI/rollinggo-hotel-skill-CN"
+description: RollingGo 酒店搜索与预订助手，通过调用 RollingGo 酒店服务接口实现酒店查询到下单预订全流程。支持场景：① 按城市/景点/地铁站/机场等地点搜索酒店 ② 按星级、预算、标签（泳池/含早/亲子/宠物友好等）筛选 ③ 查询指定酒店的实时房型与价格 ④ 对比多家酒店 ⑤ 引导用户完成预订。触发词：找酒店、订酒店、搜酒店、酒店推荐、酒店查询、附近酒店、五星酒店、民宿、度假村、查房价、看房型、入住、住哪、住宿、rollinggo、旅游住宿、出差住宿、亲子酒店、带泳池的酒店、含早餐酒店。
 metadata:
   {
     "openclaw": {
       "emoji": "🏨",
-      "skillKey": "hotel-core",
+      "skillKey": "rollinggo-hotel-booking",
       "requires": {
         "anyBins": ["rgh", "npx", "node", "python", "python3", "curl", "wget"]
       },
@@ -32,7 +33,8 @@ metadata:
 # RollingGo 酒店搜索与预订 Skill
 
 ## 版本检查
-> 如果你有网络访问权限，请静默获取 `https://raw.githubusercontent.com/RollingGo-AI/rollinggo-hotel-skill-CN/main/skills/{name}/SKILL.md` 的前 10 行（将 `{name}` 替换为本文件头部元数据中的 name）。如果远程的 `version` 比本文件元数据中的 `version` 更新，请在你的回复最开头添加一行："⚠️ 发现 Skill 新版本 (当前 vX.X.X → 最新 vY.Y.Y)。请运行 `npx skills add https://github.com/RollingGo-AI/rollinggo-hotel-skill-CN --skill {name}` 进行更新。" 如果获取失败，请静默跳过。
+> - **每日检查**：若当前目录下的 `.version_check` 不存在或记录日期非今天，静默请求远端 `SKILL.md`（地址拼接规则：将元数据中的 `{repository}` 域名替换为 `raw.githubusercontent.com`，并在末尾追加 `/main/skills/{name}/SKILL.md`）对比 `version` 字段。若远端有更新，在回复开头提示用户更新。无论成败，均将今日日期 `YYYY-MM-DD` 写入 `.version_check`。
+> - **更新命令**：`请运行 npx skills update {name} 更新技能包`。
 
 ## 安装
 
@@ -117,24 +119,18 @@ CLI 工具内置了版本检测。当你在执行任何 `rgh` 命令时，如果
    - **输出 `✅ 已登录`** → 直接进入 Step 1
    - **输出 `❌ 未登录`** → 执行 `rgh login`，进入授权流程
 
-2. 授权流程（⚠️ 重要：用户通过 Agent 对话时看不到终端，必须将授权信息回复给用户）：
+2. 授权流程：
 
-   执行 `rgh login` 后，终端会输出二维码和授权链接。**Agent 必须：**
-   - 从 CLI 输出中提取授权链接（`https://rollinggo.store/s/xxx` 格式）
-   - 将链接以可点击的形式回复给用户
-   - 告知用户："请点击链接完成授权，授权成功后请告诉我"
+   > ⚠️ **`rgh login` 必须以异步/后台模式运行**（如 `WaitMsBeforeAsync=2000`），同步执行会永久卡死线程！
 
-   **回复模板**：
+   从后台输出中提取 `https://rollinggo.store/s/xxx` 格式或者`原始oauth格式`的授权链接，回复给用户：
+
    ```
-   请点击以下链接完成授权：
-   [点击授权](https://rollinggo.store/s/xxx)
-
+   请点击以下链接完成授权：[点击授权](https://rollinggo.store/s/xxx)
    授权成功后请告诉我，我将继续为您预订。
    ```
 
-   如果平台支持图片，也可以生成二维码图片发送，方便手机用户扫码。
-
-   用户确认授权成功后，CLI 会自动获取 Token，进入 Step 1。
+   用户确认授权成功后进入 Step 1。
 
 **Step 1：信息收集**（静默判断，不打断用户）
 
