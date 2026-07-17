@@ -48,7 +48,8 @@ RollingGo酒店预订Skill就能帮你全程搞定：
 💴 还能设置24 小时自动**盯价**，降价马上**提醒**
 
 全球酒店**实时推荐**及**闭环预订**，不用自己蹲点比价，不用纠结早订亏、晚订无，订酒店的烦心事，一句话帮你全打理妥当。
-
+> 如果你是国际用户，或者你偏好信用卡付款，请参考 [**
+RollingGo-hotel-skill-global**](https://github.com/RollingGo-AI/RollingGo-hotel-skill-global)，该版本支持信用卡支付。
 
 
 ## ✨ Skill亮点
