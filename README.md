@@ -71,10 +71,6 @@ RollingGo-hotel-skill-global](https://github.com/RollingGo-AI/RollingGo-hotel-sk
 自动兼容 Cursor, Claude Code, Windsurf 等 40+ 种代理
 
 ```bash
-# 交互式安装 (推荐，可从菜单中自由勾选不同能力模块)
-npx skills add https://github.com/RollingGo-AI/rollinggo-hotel-skill-CN
-
-# 或直接定向安装特定核心模块 (跳过交互选单)
 npx skills add https://github.com/RollingGo-AI/rollinggo-hotel-skill-CN --skill rollinggo-hotel-booking
 ```
 
